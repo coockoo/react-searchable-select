@@ -1,0 +1,28 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.input {
+	display: flex;
+	input {
+		flex: 1;
+		padding: 0px 8px;
+		height: 32px;
+		border: 1px solid #cecece;
+		outline: none;
+		font-size: 18px;
+		box-sizing: border-box;
+	}
+}
+.options {
+	li {
+		list-style: none;
+		line-height: 32px;
+		font-size: 18px;
+		padding: 0px 8px;
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
