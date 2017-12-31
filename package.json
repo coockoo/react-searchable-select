@@ -1,0 +1,38 @@
+{
+  "name": "react-timezone-selector",
+  "version": "1.0.0",
+  "description": "React timezone selector",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --config showcase/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/coockoo/react-timezone-selector.git"
+  },
+  "keywords": [
+    "react",
+    "timezone-selector"
+  ],
+  "author": "Oleksandr Bondarchuk <alex.coockoo@gmail.com> (https://github.com/coockoo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coockoo/react-timezone-selector/issues"
+  },
+  "homepage": "https://github.com/coockoo/react-timezone-selector#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^2.30.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^4.0.0-beta.11",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
