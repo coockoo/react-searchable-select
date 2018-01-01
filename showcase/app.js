@@ -1,21 +1,28 @@
-import React, { Component } from 'react'
-import { hot } from 'react-hot-loader'
+import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
+import queryTimezones from './query-timezones';
 
-import SearchableSelect from '../src'
+import SearchableSelect from '../src';
 
 class App extends Component {
 	constructor () {
 		super()
 		this.state = {
 			value: null,
-			options: [
-				{ label: 'The best city in Europe', value: 'Europe/Kyiv' },
-				{ label: 'Olymp', value: 'Europe/Athens' },
-				{ label: 'Just a random option to check long strings in labels in case we got ones', value: 'Europe/Andorra' },
-			],
+			options: [],
+			availableOptions: [],
 			limit: 10,
 		};
 		this.state.availableOptions = this.state.options.slice(0, this.state.limit)
+	}
+	componentDidMount () {
+		queryTimezones().then((timezones) => {
+			const options = timezones.map(tz => Object.assign({ label: tz.name }, tz));
+			this.setState({
+				options,
+				availableOptions: options.slice(0, this.state.limit)
+			})
+		})
 	}
 	handleSelectChange (value) {
 		this.setState({ value })
