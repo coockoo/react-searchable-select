@@ -1,7 +1,7 @@
 {
-  "name": "react-timezone-selector",
+  "name": "react-searchable-select",
   "version": "1.0.0",
-  "description": "React timezone selector",
+  "description": "React searchable select",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
@@ -9,18 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/coockoo/react-timezone-selector.git"
+    "url": "git+ssh://git@github.com/coockoo/react-searchable-select.git"
   },
   "keywords": [
     "react",
-    "timezone-selector"
+    "searchable-select"
   ],
   "author": "Oleksandr Bondarchuk <alex.coockoo@gmail.com> (https://github.com/coockoo)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coockoo/react-timezone-selector/issues"
+    "url": "https://github.com/coockoo/react-searchable-select/issues"
   },
-  "homepage": "https://github.com/coockoo/react-timezone-selector#readme",
+  "homepage": "https://github.com/coockoo/react-searchable-select#readme",
   "devDependencies": {
     "webpack": "^3.10.0"
   },
