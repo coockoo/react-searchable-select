@@ -1,38 +1,48 @@
 .container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 }
 .input {
 	display: flex;
+	flex-direction: column;
+	border: 1px solid #cecece;
+	height: 32px;
+	padding: 0px 8px;
+	border-radius: 4px;
 	input {
-		flex: 1;
 		outline: none;
+		border: none;
 	}
 }
 .input input, .value {
-	border: 1px solid #cecece;
+	flex: 1;
 	line-height: 32px;
-	height: 32px;
 	font-size: 18px;
-	padding: 0px 8px;
-	border-radius: 4px;
-	box-sizing: border-box;
 }
 .value {
-	position: absolute;
-	top: 0; left: 0; right: 0;
 	cursor: pointer;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .hidden {
-	visibility: hidden;
+	display: none;
 }
 .options {
+	position: absolute;
+	top: 32px;
+	background-color: #fff;
+	width: 100%;
+	border: 1px solid #cecece;
+	box-sizing: border-box;
 	li {
 		list-style: none;
 		line-height: 32px;
 		font-size: 18px;
-		padding: 0px 8px;
+		margin: 0px 8px;
 		cursor: pointer;
+		white-space: nowrap;
+		overflow: hidden;
 		&:hover {
 			text-decoration: underline;
 		}

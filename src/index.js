@@ -35,13 +35,13 @@ class SearchableSelect extends Component {
 	render () {
 		return (
 			<div className={s.container}>
-				<div
-					className={cn(s.value, { [s.hidden]: this.state.isEditing })}
-					onClick={() => this.handleValueClick()}
-				>
-					<span>{this.props.value && this.props.value.label}</span>
-				</div>
 				<div className={s.input}>
+					<div
+						className={cn(s.value, { [s.hidden]: this.state.isEditing })}
+						onClick={() => this.handleValueClick()}
+					>
+						<span>{this.props.value && this.props.value.label}</span>
+					</div>
 					<input
 						ref={(input) => { this.searchInput = input; }}
 						type="text"
@@ -55,6 +55,7 @@ class SearchableSelect extends Component {
 						<li
 							key={option.value}
 							onClick={() => this.handleOptionClick(option)}
+							title={option.label}
 						>
 							{option.label}
 						</li>
