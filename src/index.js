@@ -17,15 +17,16 @@ class SearchableSelect extends Component {
 		this.props.onSearchChange(newSearch);
 	}
 	handleOptionClick (option) {
-		this.props.onChange(option.value);
+		this.props.onChange(option);
 		this.setState({
-			search: option.value,
+			search: option.label,
 			isEditing: false,
 		});
 	}
 	handleValueClick () {
+		const search = this.props.value && this.props.value.label
 		this.setState({
-			search: this.props.value || '',
+			search: search || '',
 			isEditing: true,
 		}, () => {
 			this.searchInput.focus();
@@ -38,7 +39,7 @@ class SearchableSelect extends Component {
 					className={cn(s.value, { [s.hidden]: this.state.isEditing })}
 					onClick={() => this.handleValueClick()}
 				>
-					<span>{this.props.value}</span>
+					<span>{this.props.value && this.props.value.label}</span>
 				</div>
 				<div className={s.input}>
 					<input

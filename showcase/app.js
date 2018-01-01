@@ -18,8 +18,8 @@ class App extends Component {
 			<SearchableSelect
 				value={this.state.value}
 				options={[
-					{ label: 'Europe/Kyiv', value: 'Europe/Kyiv' },
-					{ label: 'Europe/Athens', value: 'Europe/Athens' },
+					{ label: 'The best city in Europe', value: 'Europe/Kyiv' },
+					{ label: 'Olymp', value: 'Europe/Athens' },
 				]}
 				onChange={(value) => this.handleSelectChange(value)}
 			/>
