@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import cn from 'classnames';
 
 import s from './styles.less';
@@ -10,6 +11,22 @@ class SearchableSelect extends Component {
 			search: '',
 			isEditing: false,
 		};
+	}
+	componentDidMount () {
+		document.addEventListener('click', (e) => this.handleDocumentClick(e), false)
+		document.addEventListener('touchend', (e) => this.handleDocumentClick(e), false)
+	}
+	componentWillUnmount () {
+		document.removeEventListener('click', (e) => this.handleDocumentClick(e), false)
+		document.removeEventListener('touchend', (e) => this.handleDocumentClick(e), false)
+	}
+	handleDocumentClick (event) {
+		if (this.state.isEditing &&!ReactDOM.findDOMNode(this).contains(event.target)) {
+			this.setState({
+				isEditing: false,
+				search: '',
+			})
+		}
 	}
 	handleSearchChange (e) {
 		const newSearch = e.target.value;
@@ -32,6 +49,15 @@ class SearchableSelect extends Component {
 			this.searchInput.focus();
 		});
 	}
+	handleClearClick () {
+		this.setState({
+			search: '',
+			isEditing: true,
+		}, () => {
+			this.searchInput.focus();
+		})
+		this.props.onChange(null)
+	}
 	render () {
 		return (
 			<div className={s.container}>
@@ -49,6 +75,13 @@ class SearchableSelect extends Component {
 						onChange={(e) => this.handleSearchChange(e)}
 						className={cn({ [s.hidden]: !this.state.isEditing })}
 					/>
+					<span
+						className={s.times}
+						title={'Clear'}
+						onClick={() => this.handleClearClick()}
+					>
+						x
+					</span>
 				</div>
 				<ul className={cn(s.options, { [s.hidden]: !this.state.isEditing })}>
 					{this.props.options.map(option => (
