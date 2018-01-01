@@ -7,11 +7,25 @@ class App extends Component {
 	constructor () {
 		super()
 		this.state = {
-			value: null
+			value: null,
+			options: [
+				{ label: 'The best city in Europe', value: 'Europe/Kyiv' },
+				{ label: 'Olymp', value: 'Europe/Athens' },
+				{ label: 'Just a random option to check long strings in labels in case we got ones', value: 'Europe/Andorra' },
+			],
+			limit: 10,
 		};
+		this.state.availableOptions = this.state.options.slice(0, this.state.limit)
 	}
 	handleSelectChange (value) {
 		this.setState({ value })
+	}
+	handleSelectSearchChange (search) {
+		this.setState({
+			availableOptions: this.state.options.filter(o => {
+				return o.label.toLowerCase().indexOf(search) >= 0
+			}).slice(0, this.state.limit)
+		})
 	}
 	render () {
 		return (
@@ -20,11 +34,8 @@ class App extends Component {
 				<div style={{ maxWidth: '300px' }}>
 					<SearchableSelect
 						value={this.state.value}
-						options={[
-							{ label: 'The best city in Europe', value: 'Europe/Kyiv' },
-							{ label: 'Olymp', value: 'Europe/Athens' },
-							{ label: 'Just a random option to check long strings in labels in case we got ones', value: 'Europe/Andorra' },
-						]}
+						options={this.state.availableOptions}
+						onSearchChange={(search) => this.handleSelectSearchChange(search)}
 						onChange={(value) => this.handleSelectChange(value)}
 					/>
 				</div>

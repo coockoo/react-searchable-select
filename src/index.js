@@ -26,6 +26,7 @@ class SearchableSelect extends Component {
 				isEditing: false,
 				search: '',
 			})
+			this.props.onSearchChange('')
 		}
 	}
 	handleSearchChange (e) {
@@ -48,6 +49,7 @@ class SearchableSelect extends Component {
 		}, () => {
 			this.searchInput.focus();
 		});
+		this.props.onSearchChange('')
 	}
 	handleClearClick () {
 		this.setState({
@@ -56,6 +58,7 @@ class SearchableSelect extends Component {
 		}, () => {
 			this.searchInput.focus();
 		})
+		this.props.onSearchChange('')
 		this.props.onChange(null)
 	}
 	render () {
