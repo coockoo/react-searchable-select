@@ -30,7 +30,7 @@ class App extends Component {
 	handleSelectSearchChange (search) {
 		this.setState({
 			availableOptions: this.state.options.filter(o => {
-				return o.label.toLowerCase().indexOf(search) >= 0
+				return o.label.toLowerCase().indexOf(search.toLowerCase()) >= 0
 			}).slice(0, this.state.limit)
 		})
 	}
@@ -47,6 +47,8 @@ class App extends Component {
 					/>
 				</div>
 				<p>This is my text after the selector. Just random content.</p>
+				<p>Current value is:</p>
+				<pre>{JSON.stringify(this.state.value)}</pre>
 			</div>
 		);
 	};

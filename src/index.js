@@ -40,6 +40,7 @@ class SearchableSelect extends Component {
 			search: option.label,
 			isEditing: false,
 		});
+		this.props.onSearchChange(option.label)
 	}
 	handleValueClick () {
 		const search = this.props.value && this.props.value.label
@@ -49,7 +50,7 @@ class SearchableSelect extends Component {
 		}, () => {
 			this.searchInput.focus();
 		});
-		this.props.onSearchChange('')
+		this.props.onSearchChange(search || '')
 	}
 	handleClearClick () {
 		this.setState({
