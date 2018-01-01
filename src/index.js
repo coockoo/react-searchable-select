@@ -49,7 +49,7 @@ class SearchableSelect extends Component {
 						className={cn({ [s.hidden]: !this.state.isEditing })}
 					/>
 				</div>
-				<ul className={s.options}>
+				<ul className={cn(s.options, { [s.hidden]: !this.state.isEditing })}>
 					{this.props.options.map(option => (
 						<li
 							key={option.value}
