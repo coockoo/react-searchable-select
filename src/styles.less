@@ -6,13 +6,25 @@
 	display: flex;
 	input {
 		flex: 1;
-		padding: 0px 8px;
-		height: 32px;
-		border: 1px solid #cecece;
 		outline: none;
-		font-size: 18px;
-		box-sizing: border-box;
 	}
+}
+.input input, .value {
+	border: 1px solid #cecece;
+	line-height: 32px;
+	height: 32px;
+	font-size: 18px;
+	padding: 0px 8px;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.value {
+	position: absolute;
+	top: 0; left: 0; right: 0;
+	cursor: pointer;
+}
+.hidden {
+	visibility: hidden;
 }
 .options {
 	li {
