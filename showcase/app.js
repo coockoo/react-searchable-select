@@ -54,7 +54,7 @@ class App extends Component {
 	render () {
 		return (
 			<div className={s.container}>
-				<div>
+				<div style={{ width: '400px' }}>
 					<h3>Timezone:</h3>
 					<SearchableSelect
 						value={this.state.value}
