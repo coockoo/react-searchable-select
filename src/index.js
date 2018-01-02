@@ -35,7 +35,7 @@ class SearchableSelect extends Component {
 	}
 	handleKeydown (e) {
 		if (this.state.isEditing) {
-			if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+			if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === 'Escape') {
 				e.preventDefault()
 			}
 			if (e.key === 'ArrowDown') {
@@ -51,6 +51,8 @@ class SearchableSelect extends Component {
 					this.props.onChange(this.props.options[this.state.selectedIndex])
 					this.setState({ selectedIndex: -1, isEditing: false, search: '' })
 				}
+			} else if (e.key === 'Escape') {
+				this.setState({ selectedIndex: -1, isEditing: false, search: '' })
 			}
 		}
 	}
