@@ -10,15 +10,18 @@ class SearchableSelect extends Component {
 		this.state = {
 			search: '',
 			isEditing: false,
+			selectedIndex: -1,
 		};
 	}
 	componentDidMount () {
 		document.addEventListener('click', (e) => this.handleDocumentClick(e), false)
 		document.addEventListener('touchend', (e) => this.handleDocumentClick(e), false)
+		document.addEventListener('keydown', (e) => this.handleKeydown(e), false)
 	}
 	componentWillUnmount () {
 		document.removeEventListener('click', (e) => this.handleDocumentClick(e), false)
 		document.removeEventListener('touchend', (e) => this.handleDocumentClick(e), false)
+		document.removeEventListener('keydown', (e) => this.handleKeydown(e), false)
 	}
 	handleDocumentClick (event) {
 		if (this.state.isEditing &&!ReactDOM.findDOMNode(this).contains(event.target)) {
@@ -27,6 +30,27 @@ class SearchableSelect extends Component {
 				search: '',
 			})
 			this.props.onSearchChange('')
+		}
+	}
+	handleKeydown (e) {
+		if (this.state.isEditing) {
+			if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter') {
+				e.preventDefault()
+			}
+			if (e.key === 'ArrowDown') {
+				this.setState({
+					selectedIndex: Math.min(this.state.selectedIndex + 1, this.props.options.length - 1)
+				})
+			} else if (e.key === 'ArrowUp') {
+				this.setState({
+					selectedIndex: Math.max(this.state.selectedIndex - 1, 0)
+				})
+			} else if (e.key === 'Enter') {
+				if (this.state.selectedIndex >= 0 && this.state.selectedIndex < this.props.options.length) {
+					this.props.onChange(this.props.options[this.state.selectedIndex])
+					this.setState({ selectedIndex: -1, isEditing: false, search: '' })
+				}
+			}
 		}
 	}
 	handleSearchChange (e) {
@@ -46,20 +70,11 @@ class SearchableSelect extends Component {
 		this.setState({
 			search: '',
 			isEditing: true,
+			selectedIndex: -1,
 		}, () => {
 			this.searchInput.focus();
 		});
 		this.props.onSearchChange('')
-	}
-	handleClearClick () {
-		this.setState({
-			search: '',
-			isEditing: true,
-		}, () => {
-			this.searchInput.focus();
-		})
-		this.props.onSearchChange('')
-		this.props.onChange(null)
 	}
 	render () {
 		return (
@@ -81,7 +96,6 @@ class SearchableSelect extends Component {
 					<span
 						className={s.times}
 						title={'Clear'}
-						onClick={() => this.handleClearClick()}
 					>
 						x
 					</span>
@@ -92,6 +106,7 @@ class SearchableSelect extends Component {
 							key={`${option.value}-${index}`}
 							onClick={() => this.handleOptionClick(option)}
 							title={option.label}
+							className={cn({ [s.selected]: this.state.selectedIndex === index })}
 						>
 							{option.label}
 						</li>
