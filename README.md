@@ -14,7 +14,6 @@ Open in your favourite web browser [http://localhost:8080](http://localhost:8080
 ## Todo
 
 - Add build process for `src` into `dist` (without showcase)
-- Check for performance issues and avoiding possible re-renders with `why-did-you-update`
 - Make PREEEEETTYYY
 - Make selected list item in viewport. Eg: select Kiev, on next click on timezone selector make it top 1 or in the middle
 - Move viewport (scroll) to item that is currently selected

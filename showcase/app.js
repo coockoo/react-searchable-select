@@ -8,9 +8,9 @@ import SearchableSelect from '../src';
 import s from './styles.less';
 
 class App extends Component {
-	constructor () {
-		super()
-		const currentTimezone = moment.tz.guess()
+	constructor (props) {
+		super(props);
+		const currentTimezone = moment.tz.guess();
 		this.state = {
 			value: { label: currentTimezone, value: currentTimezone },
 			options: [],
@@ -19,7 +19,10 @@ class App extends Component {
 			currentMoment: moment(),
 			search: '',
 		};
-		this.state.availableOptions = this.state.options.slice(0, this.state.limit)
+		this.state.availableOptions = this.state.options.slice(0, this.state.limit);
+
+		this.handleSelectChange = this.handleSelectChange.bind(this);
+		this.handleSelectSearchChange = this.handleSelectSearchChange.bind(this);
 	}
 	componentDidMount () {
 		queryTimezones().then((timezones) => {
@@ -59,8 +62,8 @@ class App extends Component {
 					<SearchableSelect
 						value={this.state.value}
 						options={this.state.search ? this.state.availableOptions : this.state.options}
-						onSearchChange={(search) => this.handleSelectSearchChange(search)}
-						onChange={(value) => this.handleSelectChange(value)}
+						onSearchChange={this.handleSelectSearchChange}
+						onChange={this.handleSelectChange}
 					/>
 					{this.state.value && this.state.value.value ? (
 						<div>

@@ -14,6 +14,13 @@ class SearchableSelect extends Component {
 			selectedIndex: -1,
 		};
 	}
+	shouldComponentUpdate (nextProps, nextState) {
+		return (
+			nextProps.options !== this.props.options ||
+			nextProps.value !== this.props.value ||
+			nextState !== this.state
+		)
+	}
 	componentDidMount () {
 		document.addEventListener('click', (e) => this.handleDocumentClick(e), false)
 		document.addEventListener('touchend', (e) => this.handleDocumentClick(e), false)

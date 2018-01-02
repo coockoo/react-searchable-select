@@ -61,5 +61,8 @@ module.exports = {
 			cache: true,
 			inject: 'body'
 		}),
+		new webpack.DefinePlugin({
+			'process.env': JSON.stringify('development'),
+		}),
 	]
 };
