@@ -18,3 +18,4 @@ Open in your favourite web browser [http://localhost:8080](http://localhost:8080
 - Make PREEEEETTYYY
 - Show "No results found" or something label for missing search options
 - Make selected list item in viewport. Eg: select Kiev, on next click on timezone selector make it top 1 or in the middle
+- Move viewport (scroll) to item that is currently selected
