@@ -55,19 +55,13 @@ class App extends Component {
 		return (
 			<div className={s.container}>
 				<div>
-					{/* Close your eyes for the next line. Too lazy to add separate less file for one style */}
-					<h1>Your current time is:</h1>
-					<div>
-						<SearchableSelect
-							value={this.state.value}
-							options={this.state.search ? this.state.availableOptions : this.state.options}
-							onSearchChange={(search) => this.handleSelectSearchChange(search)}
-							onChange={(value) => this.handleSelectChange(value)}
-						/>
-					</div>
-					<p>This is my text after the selector. Just random content.</p>
-					<h3>Current value is:</h3>
-					<pre>{JSON.stringify(this.state.value)}</pre>
+					<h3>Timezone:</h3>
+					<SearchableSelect
+						value={this.state.value}
+						options={this.state.search ? this.state.availableOptions : this.state.options}
+						onSearchChange={(search) => this.handleSelectSearchChange(search)}
+						onChange={(value) => this.handleSelectChange(value)}
+					/>
 					{this.state.value && this.state.value.value ? (
 						<div>
 							<h3>Current time in selected timezone is:</h3>
