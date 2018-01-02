@@ -45,6 +45,13 @@ module.exports = {
 					path.resolve(__dirname, '../src'),
 				],
 			},
+			{
+				test: /\.svg$/,
+				use: 'file-loader',
+				include: [
+					path.resolve(__dirname, '../src'),
+				],
+			},
 		],
 	},
 	plugins: [
