@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import cn from 'classnames';
 
+import chevronDownSrc from './chevron-down.svg';
 import s from './styles.less';
 
 class SearchableSelect extends Component {
@@ -93,12 +94,9 @@ class SearchableSelect extends Component {
 						onChange={(e) => this.handleSearchChange(e)}
 						className={cn({ [s.hidden]: !this.state.isEditing })}
 					/>
-					<span
-						className={s.times}
-						title={'Clear'}
-					>
-						x
-					</span>
+					<div className={s.chevron}>
+						<img src={chevronDownSrc} />
+					</div>
 				</div>
 				<ul className={cn(s.options, { [s.hidden]: !this.state.isEditing })}>
 					{this.props.options.map((option, index) => (
