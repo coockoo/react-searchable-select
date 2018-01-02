@@ -77,6 +77,9 @@ class SearchableSelect extends Component {
 		});
 		this.props.onSearchChange('')
 	}
+	isOptionSelected (option, index) {
+		return this.state.selectedIndex === index || (this.props.value && this.props.value.value === option.value)
+	}
 	render () {
 		return (
 			<div className={s.container}>
@@ -104,7 +107,7 @@ class SearchableSelect extends Component {
 							key={`${option.value}-${index}`}
 							onClick={() => this.handleOptionClick(option)}
 							title={option.label}
-							className={cn({ [s.selected]: this.state.selectedIndex === index })}
+							className={cn({ [s.selected]: this.isOptionSelected(option, index) })}
 						>
 							{option.label}
 						</li>
