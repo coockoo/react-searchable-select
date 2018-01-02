@@ -18,3 +18,5 @@ Open in your favourite web browser [http://localhost:8080](http://localhost:8080
 - Make PREEEEETTYYY
 - Make selected list item in viewport. Eg: select Kiev, on next click on timezone selector make it top 1 or in the middle
 - Move viewport (scroll) to item that is currently selected
+- Add isEdit: true on arrow down ??? interesting
+- Add interactions to user actions border highlight, transitions, drop up/down
