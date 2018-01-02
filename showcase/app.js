@@ -10,8 +10,9 @@ import s from './styles.less';
 class App extends Component {
 	constructor () {
 		super()
+		const currentTimezone = moment.tz.guess()
 		this.state = {
-			value: null,
+			value: { label: currentTimezone, value: currentTimezone },
 			options: [],
 			availableOptions: [],
 			limit: 10,
@@ -23,7 +24,10 @@ class App extends Component {
 	componentDidMount () {
 		queryTimezones().then((timezones) => {
 			const options = timezones.map(tz => Object.assign({ label: tz.name }, tz));
+			const currentTimezone = moment.tz.guess()
+			const value = options.filter(o => o.value === currentTimezone)[0]
 			this.setState({
+				value,
 				options,
 				availableOptions: options.slice(0, this.state.limit)
 			})
@@ -50,24 +54,27 @@ class App extends Component {
 	render () {
 		return (
 			<div className={s.container}>
-				{/* Close your eyes for the next line. Too lazy to add separate less file for one style */}
 				<div>
-					<SearchableSelect
-						value={this.state.value}
-						options={this.state.search ? this.state.availableOptions : this.state.options}
-						onSearchChange={(search) => this.handleSelectSearchChange(search)}
-						onChange={(value) => this.handleSelectChange(value)}
-					/>
-				</div>
-				<p>This is my text after the selector. Just random content.</p>
-				<h3>Current value is:</h3>
-				<pre>{JSON.stringify(this.state.value)}</pre>
-				{this.state.value && this.state.value.value ? (
+					{/* Close your eyes for the next line. Too lazy to add separate less file for one style */}
+					<h1>Your current time is:</h1>
 					<div>
-						<h3>Current time in selected timezone is:</h3>
-						<p>{this.state.currentMoment.tz(this.state.value.value).format('YYYY-MM-DD HH:mm:ss')}</p>
+						<SearchableSelect
+							value={this.state.value}
+							options={this.state.search ? this.state.availableOptions : this.state.options}
+							onSearchChange={(search) => this.handleSelectSearchChange(search)}
+							onChange={(value) => this.handleSelectChange(value)}
+						/>
 					</div>
-				) : null}
+					<p>This is my text after the selector. Just random content.</p>
+					<h3>Current value is:</h3>
+					<pre>{JSON.stringify(this.state.value)}</pre>
+					{this.state.value && this.state.value.value ? (
+						<div>
+							<h3>Current time in selected timezone is:</h3>
+							<p>{this.state.currentMoment.tz(this.state.value.value).format('YYYY-MM-DD HH:mm:ss')}</p>
+						</div>
+					) : null}
+				</div>
 			</div>
 		);
 	};
