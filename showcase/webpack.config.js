@@ -41,6 +41,7 @@ module.exports = {
 					'less-loader'
 				],
 				include: [
+					__dirname,
 					path.resolve(__dirname, '../src'),
 				],
 			},

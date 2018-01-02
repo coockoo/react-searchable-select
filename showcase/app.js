@@ -5,6 +5,8 @@ import moment from 'moment-timezone';
 
 import SearchableSelect from '../src';
 
+import s from './styles.less';
+
 class App extends Component {
 	constructor () {
 		super()
@@ -14,6 +16,7 @@ class App extends Component {
 			availableOptions: [],
 			limit: 10,
 			currentMoment: moment(),
+			search: '',
 		};
 		this.state.availableOptions = this.state.options.slice(0, this.state.limit)
 	}
@@ -38,6 +41,7 @@ class App extends Component {
 	}
 	handleSelectSearchChange (search) {
 		this.setState({
+			search,
 			availableOptions: this.state.options.filter(o => {
 				return o.label.toLowerCase().indexOf(search.toLowerCase()) >= 0
 			}).slice(0, this.state.limit)
@@ -45,12 +49,12 @@ class App extends Component {
 	}
 	render () {
 		return (
-			<div>
+			<div className={s.container}>
 				{/* Close your eyes for the next line. Too lazy to add separate less file for one style */}
-				<div style={{ maxWidth: '300px' }}>
+				<div>
 					<SearchableSelect
 						value={this.state.value}
-						options={this.state.availableOptions}
+						options={this.state.search ? this.state.availableOptions : this.state.options}
 						onSearchChange={(search) => this.handleSelectSearchChange(search)}
 						onChange={(value) => this.handleSelectChange(value)}
 					/>
