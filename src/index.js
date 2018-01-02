@@ -43,14 +43,13 @@ class SearchableSelect extends Component {
 		this.props.onSearchChange(option.label)
 	}
 	handleValueClick () {
-		const search = this.props.value && this.props.value.label
 		this.setState({
-			search: search || '',
+			search: '',
 			isEditing: true,
 		}, () => {
 			this.searchInput.focus();
 		});
-		this.props.onSearchChange(search || '')
+		this.props.onSearchChange('')
 	}
 	handleClearClick () {
 		this.setState({
