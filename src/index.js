@@ -107,11 +107,16 @@ class SearchableSelect extends Component {
 							key={`${option.value}-${index}`}
 							onClick={() => this.handleOptionClick(option)}
 							title={option.label}
-							className={cn({ [s.selected]: this.isOptionSelected(option, index) })}
+							className={cn(s.option, { [s.selected]: this.isOptionSelected(option, index) })}
 						>
 							{option.label}
 						</li>
 					))}
+					{!this.props.options || !this.props.options.length ? (
+						<li className={s.noResults}>
+							No results found
+						</li>
+					) : null}
 				</ul>
 			</div>
 		)
